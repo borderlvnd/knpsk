@@ -1,0 +1,72 @@
+.img-full {
+    width: 350px;
+    height: 500px;
+    float:left;
+    margin: 5px 5px 5px 0;
+}
+
+.tags {
+    text-align: center;
+}
+
+.main-text {
+    padding: 0px 100px;
+    font-size: 20px;
+}
+
+.img-preview {
+    width: 150px;
+    height: 200px;
+}
+.role {
+    text-align: center;
+    font-style: italic;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.btn-common {
+    background-color: darkred;
+    border: solid 1px white;
+    color: gray;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 16px;
+    float:left;
+}
+.index-title {
+    font-weight: bold;
+}
+.post {
+    border-style: solid;
+    text-align:center;
+    padding: 0px 10px 0px 20px;
+    margin:40px;
+}
+.post-full-view {
+    text-align: center;
+}
+
+.img-person {
+    float: left;
+    width: 400px;
+    height: 600px;
+}
+
+.info-person {
+    width:62%;
+    float:right;
+}
+
+.award {
+    padding: 0px 5px 5px 0px;
+}
+
+.history-person {
+    padding-left: 150px;
+    float: none;
+    margin-left: 280px;
+}
+
+
+
