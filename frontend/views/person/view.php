@@ -37,13 +37,13 @@ $backend = BackendAsset::register($this);
         <p class="award"><b>Awards: </b> <?= \common\widgets\AwardWidget::widget(
             [
                 'arr' => $model->awards,
-                'path' => $backend->baseUrl . '/web/images/awards/',
+                'path' => $backend->baseUrl . '\web\images\awards/',
             ]
         ); ?></p>
 
 
     </div>
-    <div><img class="img-person" src="<?= $backend->baseUrl . "/web/images/persons/" . $model->photo ?>">
+    <div><img class="img-person" src="<?= $backend->baseUrl . "\web\images\persons/" . $model->photo ?>">
     </div>
     <div class="history-person"><?=$model->history?></div>
 </div>

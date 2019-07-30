@@ -1,37 +1,22 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use frontend\assets\BackendAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\essences\Genre */
 
-$this->title = $model->id;
+$this->title = $model->GenreName;
 $this->params['breadcrumbs'][] = ['label' => 'Genres', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$backend = BackendAsset::register($this);
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="genre-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'GenreName',
-        ],
-    ]) ?>
+    <?php foreach($model->films as $arr) {
+        echo "<img class=\"img-preview\" src=\"" . $backend->baseUrl . '\web\images\films/'.$arr->image."\">    " ;
+    }?>
 
 </div>

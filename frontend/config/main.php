@@ -46,6 +46,7 @@ return [
                 'film/<id:[\d]+>'=>'film/view',
                 'person/producer/<id:[\d]+>' =>'person/producer',
                 'person/actor/<id:[\d]+>' =>'person/actor',
+                'genre/<id:[\d]+>' => 'genre/view',
             ],
         ],
 

@@ -16,7 +16,7 @@ class AwardWidget extends Widget
         //var_dump($this->arr); die();
         foreach($this->arr as $item)
         {
-            $images[] = "<img src=\"".$this->path.$item->image."\">";
+            $images[] = "<img src=\"".$this->path.$item->image.'" class="img-mpaa">';
         }
         return implode(' ',$images);
 

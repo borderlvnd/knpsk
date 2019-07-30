@@ -9,9 +9,9 @@ use yii\helpers\Html;
 class ArrayLinks extends Widget
 {
     public $arr;
-    public $className;
+    public $className = null;
     public $type = null;
-    public $attribute;
+    public $attribute = null;
 
     public function run()
     {
@@ -20,10 +20,9 @@ class ArrayLinks extends Widget
         if (isset($this->arr[0])) {
             foreach ($this->arr as $item) {
                 if (isset($this->type)) {
-                    if ($this->type ==   'actor' && $item['function'] != Person::ROLE_PRODUCER) {
-                        $links[] = Html::a($item[$this->attribute],
-                            Url::to('/' . $this->className . '/' . $this->type . '/' . $item->id));
-                    }
+                    $links[] = Html::a($item[$this->attribute],
+                        Url::to('/' . $this->className . '/' . $this->type . '/' . $item->id));
+
                 } else {
                     $links[] = Html::a($item[$this->attribute], Url::to('/' . $this->className . '/' . $item->id));
                 }

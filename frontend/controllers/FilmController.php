@@ -67,10 +67,11 @@ class FilmController extends Controller
      */
     public function actionView($id)
     {
-        $film = $this->filmService->FilmRepository->getById($id);
-
+        $film = $this->filmService->film->getById($id);
+        $rating = $this->filmService->getAvg($id);
         return $this->render('view', [
             'model' => $film,
+            'rating' => $rating,
         ]);
     }
 

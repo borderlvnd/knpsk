@@ -10,17 +10,16 @@ use Yii;
 class CommentWidget extends Widget
 {
 
-public $parent_id = 0;
-public $type_id;
-public $content;
-public $nestedLevel = 0;
+
+public $model;
 
     public function run()
     {
-//        $content = "";
-//        $comments =
-//        $user_id = Yii::$app->user->id;
-//        $Comment = new Comment();
-//        $comment->
+
+        foreach(Comment::findAll(['film_id'=>$this->model->id,'parent_id'=>null])as $item)
+        {
+            echo $this->render('.\comment/comment',['comm'=>$item]);
+            echo $this->render('.\comment/view',['model'=>$item]);
+        }
     }
 }
