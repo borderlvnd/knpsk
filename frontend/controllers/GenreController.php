@@ -52,6 +52,8 @@ class GenreController extends Controller
      */
     public function actionView($id)
     {
+        //TODO repository for tags
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

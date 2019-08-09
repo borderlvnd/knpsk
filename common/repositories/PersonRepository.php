@@ -23,7 +23,14 @@ class  PersonRepository extends IRepository
     public function getProducerById($id)
     {
         $producer  = $this->getBy($this->record,['function'=>Person::ROLE_PRODUCER,'id'=>$id]);
+
         return $producer;
+    }
+
+    public function getAllActorsByFilmId($id)
+    {
+        $actors = $this->getAllBy($this->record,['function'=>Person::ROLE_ACTOR,'id'=>$id]);
+        return $actors;
     }
 }
 

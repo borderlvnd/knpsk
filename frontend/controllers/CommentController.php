@@ -62,6 +62,17 @@ class CommentController extends Controller
         return $this->redirect(Yii::$app->request->referrer);
     }
 
+    public function actionReply($id)
+    {
+        $comment = new Comment();
+        $comment->parent_id = $id;
+        $post = Yii::$app->request->post();
+        if ($comment->load($post) && $comment->save()) {
+            Yii::$app->session->setFlash('success', 'Your comment was added');
+        }
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
 
     /**
      * Displays a single Comment model.

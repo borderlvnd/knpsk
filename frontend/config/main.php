@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'on beforeRequest' => ['common\essences\User','lastActivity'],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -42,11 +43,15 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '<alias:\w+>' => 'site/<alias>',
-                'film/index/'=>'article/index',
+                'film/index'=>'film/index',
                 'film/<id:[\d]+>'=>'film/view',
+                'film/favorites/<id:[\d]+>'=>'film/favorites',
                 'person/producer/<id:[\d]+>' =>'person/producer',
                 'person/actor/<id:[\d]+>' =>'person/actor',
                 'genre/<id:[\d]+>' => 'genre/view',
+                'user/<id:[\d]+>' => 'user/view',
+                'comment/update/<id:[\d]+>' => 'comment/update',
+                'comment/reply/<id:[\d]+>' => 'comment/reply',
             ],
         ],
 

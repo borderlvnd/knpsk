@@ -29,11 +29,11 @@ $backend = BackendAsset::register($this);
             'date' => $model->birthDate,
         ]) ?><br>
         <b>Films: </b> <?= \common\widgets\ArrayLinks::widget([
-            'arr' => $model->films0,
+            'arr' => $model->films,
             'className' => 'Film',
             'attribute' => 'FilmName',
         ]) ?><br>
-        <b>Amount of films: </b> <?= count($model->films0); ?><br>
+        <b>Amount of films: </b> <?= count($model->films); ?><br>
         <p class="award"><b>Awards: </b> <?= \common\widgets\AwardWidget::widget(
             [
                 'arr' => $model->awards,
@@ -46,5 +46,15 @@ $backend = BackendAsset::register($this);
     <div><img class="img-person" src="<?= $backend->baseUrl . "\web\images\persons/" . $model->photo ?>">
     </div>
     <div class="history-person"><?=$model->history?></div>
+
+
 </div>
+<p class="comments-section">
+<hr><br><br><?= \common\widgets\CommentWidget::widget([
+    'person_id' => $model->id,
+    'type' => 'person_id',
+    'comment' => $comments,
+]); ?>
+</p>
+
 

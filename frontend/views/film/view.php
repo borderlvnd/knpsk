@@ -9,6 +9,9 @@ use frontend\assets\BackendAsset;
 /* @var $this yii\web\View */
 /* @var $model common\essences\Film */
 /* @var $rating */
+/* @var $films */
+/* @var $comments integer */
+
 
 $this->title = $model->FilmName;
 $this->params['breadcrumbs'][] = ['label' => 'Films', 'url' => ['index']];
@@ -17,6 +20,7 @@ $backend = BackendAsset::register($this);
 $kinopoisk = KinopoiskAsset::register($this);
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="film-view" xmlns:Html="http://www.w3.org/1999/html">
     <h1 style="text-align: center;"><?= Html::encode($this->title) ?></h1>
     <br>
@@ -42,12 +46,12 @@ $kinopoisk = KinopoiskAsset::register($this);
                         [
                             'label' => 'Producer',
                             'value' => \common\widgets\ArrayLinks::widget([
-                                    'arr' => array($model->producer),
+                                'arr' => array($producer),
                                 'className' => 'Person',
                                 'type' => 'producer',
                                 'attribute' => 'FullName',
 
-]),
+                            ]),
                             'format' => 'raw',
                         ],
                         [
@@ -88,7 +92,7 @@ $kinopoisk = KinopoiskAsset::register($this);
                         [
                             'label' => "Actors",
                             'value' => \common\widgets\ArrayLinks::widget([
-                                'arr' => $model->people,
+                                'arr' => $actors,
                                 'className' => 'Person',
                                 'type' => 'actor',
                                 'attribute' => 'FullName',
@@ -98,17 +102,24 @@ $kinopoisk = KinopoiskAsset::register($this);
 
                     ]
                 ]); ?>
-                <br>
-                <?= $model->description ?>
+                <br></td>
+        </tr></table>
+    <div>    <?= Html::a('Add to favorites', '/film/favorites/' . $model->id, ['class' => 'btn btn-default']) ?>
+        <?= Html::a('Preview (YouTube)', $model->Preview, ['class' => 'btn-common']); ?>
+    </div><br><br>
+    <div class="descripton-text"><?= $model->description ?></div>
 
-            </td>
-        </tr>
-    </table><?= Html::a('Preview (YouTube)', $model->Preview, ['class' => 'btn-common']); ?>
-    <br><br><?= \common\widgets\CommentWidget::widget([
-        'model' => $model,
-    ]); ?>
-    <br> <?= \common\widgets\SimilarFilms::widget([
-            'genres' => $model->genres,
+    <hr>
+    <br><br>
+    SIMILAR FILMS: <br>
+    <?= \common\widgets\SimilarFilms::widget([
+        'films' => $films,
+        'path' => $backend->baseUrl . '/web/images/films/',
+    ]);?>
+    <hr><br><br><?= \common\widgets\CommentWidget::widget([
         'film_id' => $model->id,
-]); ?>
+        'type' => 'film_id',
+        'comment' => $comments,
+    ]); ?>
+
 </div>

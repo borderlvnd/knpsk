@@ -16,5 +16,15 @@ class FilmRepository extends IRepository
     {
         return $this->getBy($this->record,['id'=> $id]);
     }
+
+    public function getAllByIds($ids)
+    {
+        return $this->getAllBy($this->record,$ids);
+    }
+
+    public function getAllFilms()
+    {
+        return Film::find();
+    }
 }
-?>
+

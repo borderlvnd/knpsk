@@ -16,10 +16,10 @@ use Yii;
  * @property Comment[] $comments
  * @property Film[] $films
  * @property Filmperson[] $filmpeople
- * @property Film[] $films0
  * @property Country $country
  * @property string $birthDate
  * @property string $photo
+ * @property string $history
  */
 class Person extends \yii\db\ActiveRecord
 {
@@ -44,8 +44,14 @@ class Person extends \yii\db\ActiveRecord
             [['birthDate'], 'safe'],
             [['FullName'], 'string', 'max' => 255],
             [['photo'], 'string', 'max' => 100],
-            [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Country::className(), 'targetAttribute' => ['country_id' => 'id']],
-            ];
+            [
+                ['country_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Country::className(),
+                'targetAttribute' => ['country_id' => 'id']
+            ],
+        ];
     }
     //TODO: comments,
     // similar films, genreIndexviewWithAllFilms, userProfile
@@ -66,6 +72,7 @@ class Person extends \yii\db\ActiveRecord
             'photo' => 'Photo',
         ];
     }
+
     public function getAwardpeople()
     {
         return $this->hasMany(Awardperson::className(), ['Person_id' => 'id']);
@@ -87,13 +94,7 @@ class Person extends \yii\db\ActiveRecord
         return $this->hasMany(Comment::className(), ['person_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFilms()
-    {
-        return $this->hasMany(Film::className(), ['producer_id' => 'id']);
-    }
+    
 
     /**
      * @return \yii\db\ActiveQuery
@@ -106,7 +107,7 @@ class Person extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFilms0()
+    public function getFilms()
     {
         return $this->hasMany(Film::className(), ['id' => 'Film_id'])->viaTable('filmperson', ['Person_id' => 'id']);
     }

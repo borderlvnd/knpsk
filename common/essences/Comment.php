@@ -19,7 +19,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $parent_id
  * @property int $person_id
  *
- * @property User $createdBy
+ * @property User  $createdBy
  * @property User $updatedBy
  * @property Person $person
  * @property Film $film
@@ -102,5 +102,10 @@ class Comment extends \yii\db\ActiveRecord
     public function getComments()
     {
         return $this->hasMany(Comment::className(), ['parent_id' => 'id']);
+    }
+
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 }

@@ -16,7 +16,7 @@ $backend = BackendAsset::register($this);
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php foreach($model->films as $arr) {
-        echo "<img class=\"img-preview\" src=\"" . $backend->baseUrl . '\web\images\films/'.$arr->image."\">    " ;
+        echo "<a href=\"/film/".$arr->id."\"><img class=\"img-preview\" src=\"" . $backend->baseUrl . '\web\images\films/'.$arr->image.'">' ;
     }?>
 
 </div>
