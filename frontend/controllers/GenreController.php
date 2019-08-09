@@ -8,12 +8,23 @@ use common\essences\GenreSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\services\GenreService;
 
 /**
  * GenreController implements the CRUD actions for Genre model.
  */
 class GenreController extends Controller
 {
+
+    public $genreService;
+
+
+    public function __construct($id, $module, GenreService $genreService, $config = [])
+    {
+        $this->genreService = $genreService;
+        parent::__construct($id, $module, $config);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -52,19 +63,9 @@ class GenreController extends Controller
      */
     public function actionView($id)
     {
-        //TODO repository for tags
-
+        $genre = $this->genreService->genreRepository->getGenreById($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $genre,
         ]);
-    }
-
-    protected function findModel($id)
-    {
-        if (($model = Genre::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
