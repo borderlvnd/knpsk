@@ -19,7 +19,9 @@ class FilmService
 
     public function getAvg($id)
     {
-        $film = Film::find()->where(['id' => $id])->one();
+        $film = $this->film->getById($id);
+       // $film = Film::find()->where(['id' => $id])->one();
+
         if (!empty($film->userRatings)) {
             return array_sum(array_map(
                     function ($val) {

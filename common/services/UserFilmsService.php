@@ -23,7 +23,7 @@ class UserFilmsService
         $uf->user_id = $user_id;
 
         if(!$uf->save()) {
-            Yii::$app->session->setFlash('danger','already in favorites');
+            Yii::$app->session->setFlash('danger','Already in favorites');
         }
         else {
             Yii::$app->session->setFlash('success','Added to favorites');
