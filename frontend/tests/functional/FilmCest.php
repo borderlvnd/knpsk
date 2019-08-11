@@ -1,5 +1,8 @@
 <?php
 namespace frontend\tests\functional;
+use common\essences\Film;
+use common\essences\FilmPerson;
+use common\fixtures\PersonFixture;
 use frontend\tests\FunctionalTester;
 use common\fixtures\CommentFixture;
 use common\fixtures\FilmFixture;
@@ -28,28 +31,24 @@ class FilmCest
                 'dataFile' => codecept_data_dir() . 'comment.php'
             ],
             'genre' => [
-                'class' => GenreFixture::class,
+                'class' => GenreFixture\::class,
                 'dataFile' => codecept_data_dir() . 'genre.php'
             ],
             'world_rating' => [
-                'class' => WorldRatingFixture::class,
+                'class' => RatingFixture::class,
                 'dataFile' => codecept_data_dir() . 'world_rating.php'
             ],
             'film_actor' => [
-                'class' => FilmActorFixture::class,
-                'dataFile' => codecept_data_dir() . 'film_actor.php'
+                'class' => FilmPerson::class,
+                'dataFile' => codecept_data_dir() . 'film_person.php'
             ],
             'film_genre' => [
-                'class' => FilmGenreFixture::class,
+                'class' => FilmGenre::class,
                 'dataFile' => codecept_data_dir() . 'film_genre.php'
             ],
             'actor' => [
-                'class' => ActorFixture::class,
-                'dataFile' => codecept_data_dir() . 'actor.php'
-            ],
-            'rejeser' => [
-                'class' => RejeserFixture::class,
-                'dataFile' => codecept_data_dir() . 'rejeser.php'
+                'class' => PersonFixture::class,
+                'dataFile' => codecept_data_dir() . 'person.php'
             ],
         ];
     }
@@ -68,7 +67,6 @@ class FilmCest
         $I->amOnPage('/film/');
         $I->click('td a');
         $I->see('Похожие фильмы:');
-        $I->see($I->grabFixture('rejeser', 0)['name']);
         $I->see($I->grabFixture('genre', 0)['description']);
         $I->see($I->grabFixture('genre', 1)['description']);
         $I->see($I->grabFixture('actor', 0)['name']);
